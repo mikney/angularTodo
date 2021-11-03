@@ -1,0 +1,17 @@
+<form [formGroup]="form" (submit)="submit()" class="form">
+  <div *ngIf="successed" class="success_login">
+    <h1 class="title dobro">Добро пожаловать</h1>
+    <a href="#">Перейти к приложению</a>
+  </div>
+
+  <h1 class="title">Авторизация</h1>
+  <input formControlName="email" type="email" placeholder="Email...">
+  <small *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
+    Введите почту!
+  </small>
+  <input formControlName="password" type="password" placeholder="Password...">
+  <small *ngIf="form.get('password')?.invalid && form.get('password')?.touched">
+    Введите пароль!
+  </small>
+  <button class="button" type="submit">Войти</button>
+</form>

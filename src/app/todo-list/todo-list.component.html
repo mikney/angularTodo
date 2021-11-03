@@ -1,0 +1,59 @@
+<!--<div class="todo_list">-->
+<!--  <div class="list_title">-->
+<!--    <h1 class="green">-->
+<!--      Привет-->
+<!--    </h1>-->
+<!--  </div>-->
+<!--  <hr />-->
+<!--  <div class="todo_task">-->
+<!--    <ul class="completed_task">-->
+<!--      <li class="">-->
+<!--        <div class="circle"></div>-->
+<!--        Задача будет выполнена-->
+<!--      </li>-->
+<!--    </ul>-->
+<!--    <div class="new_task">-->
+<!--      Новая задача-->
+<!--    </div>-->
+<!--    <div class="add_task">-->
+<!--      <input type="text" placeholder="Текст задачи">-->
+<!--      <div class="button_elem">-->
+<!--        <button class="button green">Добавить задачу</button>-->
+<!--        <button class="button ">Отмена</button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+<div *ngFor="let o of state | filter: activeFolder" class="todo_list">
+  <div class="list_title">
+    <h1 [class]="o.color">
+      {{o.folder}}
+    </h1>
+  </div>
+  <hr />
+  <div  class="todo_task">
+    <ul >
+      <li *ngFor="let task of o.tasks" [ngClass]="{'completed_task': task.completed}">
+        <div (click)="test(task.name)" class="circle" [ngClass]="{'active': task.completed}"></div>
+        {{task.name}}
+        <div (click)="deleteTask(task.name)" class='delete_task'>&#x2717;</div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="todo_list">
+  <div class="new_task">
+    Новая задача
+  </div>
+  <div class="add_task ">
+    <input [(ngModel)]="taskText" type="text" placeholder="Текст задачи">
+    <div class="button_elem">
+      <button (click)="addTask()" class="button green">Добавить задачу</button>
+      <button class="button ">Отмена</button>
+    </div>
+  </div>
+
+</div>
+

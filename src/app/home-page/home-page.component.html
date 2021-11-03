@@ -1,0 +1,27 @@
+<div class="nav_todo">
+  <div (click)="filterFolders('all')" routerLinkActive="active" [routerLink]="['/folder/all']" class="all_task">
+    Все задачи
+  </div>
+  <ul>
+    <li routerLinkActive="active" [routerLink]="['/folder', folder.id]" (click)="filterFolders(folder.id)"   *ngFor="let folder of array" [class]="folder.color"><div >{{folder.folder}}</div></li>
+
+  </ul>
+  <button (click)="addFolderHandler()" class="new_task nav_todo">Добавить папку</button>
+  <div *ngIf="showAddFolder"  class="add_folder">
+    <input
+      type="text"
+      placeholder="Название папки"
+      [(ngModel)]="nameFolder"
+    >
+    <div (click)="addFolderHandler()" class="close_handler"></div>
+    <div class="color_folder">
+      <div (click)="addColorFolder(color)" *ngFor="let color of folderColor" [class]="color"  [ngClass]="{'active_item': color === currentColor, 'select_color': true}"></div>
+    </div>
+    <button (click)="addFolder()" class="button green nav_button">
+      Добавить
+    </button>
+  </div>
+</div>
+<!--<app-todo-list [fn]="update" (result)="resl" [folders]="filteredFolders"></app-todo-list>-->
+
+
